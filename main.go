@@ -7,12 +7,14 @@ import (
 )
 
 func AsciiArt(word string) string {
+	word = strings.TrimSuffix(word, "\\n") // Remove trailing newline
+
+
 	file, err := os.ReadFile("standard.txt")
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return ""
 	}
-
 	fileLines := strings.Split(string(file), "\n")
 	var result strings.Builder
 
@@ -36,5 +38,6 @@ func main() {
 	}
 
 	word := os.Args[1]
+
 	fmt.Println(AsciiArt(word))
 }
