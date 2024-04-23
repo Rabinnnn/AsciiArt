@@ -6,26 +6,28 @@ import (
 	"strings"
 )
 
-func AsciiArt(word string) string {
-	word = strings.TrimSuffix(word, "\\n") // Remove trailing newline
-
-
+func AsciiArt(input string) string {
+	//word = strings.TrimSuffix(word, "\\n") 
 	file, err := os.ReadFile("standard.txt")
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return ""
 	}
 	fileLines := strings.Split(string(file), "\n")
-	var result strings.Builder
 
-	for i := 0; i < 8; i++ {
-		for _, char := range word {
-			index := int(char - ' ')
-			if index >= 0 && index < len(fileLines) {
-				result.WriteString(fileLines[i+(index*9)+1])
+	var result strings.Builder
+	words := strings.Split(input, "\\n")
+
+	for _, word := range words{
+		for i := 0; i < 8; i++ {
+			for _, char := range word {
+				index := int(char - ' ')
+				if index >= 0 && index < len(fileLines){
+					result.WriteString(fileLines[i+(index*9)+1])
+				}
 			}
+			result.WriteString("\n")
 		}
-		result.WriteString("\n")
 	}
 
 	return result.String()
@@ -37,7 +39,7 @@ func main() {
 		return
 	}
 
-	word := os.Args[1]
+	input := os.Args[1]
 
-	fmt.Println(AsciiArt(word))
+	fmt.Println(AsciiArt(input))
 }
