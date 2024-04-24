@@ -1,0 +1,1 @@
+This program takes an input string and converts it to its graphical representation using ASCII art. It uses ASCII art characters stored in a banner file called "standard.txt". Each of the ASCII characters has a height of 8 lines.

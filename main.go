@@ -22,7 +22,6 @@ func AsciiArt(input string) string {
 	//split the input string by \n to handle cases where the argument has newline character
 	words := strings.Split(input, "\\n")
 
-	//iterate through the slice word by word
 	for _, word := range words{
 		for i := 0; i < 8; i++ {
 			for _, char := range word {
