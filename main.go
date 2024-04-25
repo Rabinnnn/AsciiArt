@@ -17,21 +17,34 @@ func AsciiArt(input string) string {
 	//split the contents of file by line
 	fileLines := strings.Split(string(file), "\n")
 
-	var result strings.Builder
 
-	//split the input string by \n to handle cases where the argument has newline character
-	words := strings.Split(input, "\\n")
+	var result strings.Builder
+	var words []string
+
+	if input == "\\n"{
+		fmt.Println()
+		os.Exit(0)
+	} else if input == ""{
+		os.Exit(0)
+	}  
+
+	words = strings.Split(input, "\\n")
+	
 
 	for _, word := range words{
-		for i := 0; i < 8; i++ {
-			for _, char := range word {
-				index := int(char - ' ') //find the difference between the ascii value of the letter and that of space
-				if index >= 0 && index < len(fileLines){
-					result.WriteString(fileLines[i+(index*9)+1])
+		if word != ""{
+			for i := 0; i < 8; i++ {
+				for _, char := range word {
+					index := int(char - ' ') //find the difference between the ascii value of the letter and that of space
+					if index >= 0 && index < len(fileLines){
+						result.WriteString(fileLines[i+(index*9)+1])
+					}
 				}
+				result.WriteString("\n")
+	
 			}
-			result.WriteString("\n")
 		}
+	
 	}
 
 	return result.String() //return the ASCII art as a string
@@ -46,5 +59,5 @@ func main() {
 
 	input := os.Args[1]
 
-	fmt.Println(AsciiArt(input))
+	fmt.Print(AsciiArt(input))
 }
