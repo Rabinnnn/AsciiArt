@@ -3,6 +3,8 @@ package main
 import (
 	"io/ioutil"
 	"testing"
+	"AsciiArt/functions"
+	
 )
 
 func TestAsciiArt(t *testing.T) {
@@ -24,7 +26,7 @@ func TestAsciiArt(t *testing.T) {
 			//convert content read from the file to string
 			expectedContentStr := string(expectedContent)
 
-			result := AsciiArt(input)
+			result := functions.AsciiArt(input)
 			if result != expectedContentStr {
 				t.Errorf("For input:\n'%s'\nExpected:\n%s\n but got:\n%s", input, expectedContentStr, result)
 			}
