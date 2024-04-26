@@ -20,6 +20,7 @@ func AsciiArt(input string) string {
 
 	var result strings.Builder
 	var words []string
+	
 
 	if input == "\\n"{
 		fmt.Println()
@@ -29,10 +30,12 @@ func AsciiArt(input string) string {
 	}  
 
 	words = strings.Split(input, "\\n")
+
+
 	
 
 	for _, word := range words{
-		if word != ""{
+		if word != ""{			 
 			for i := 0; i < 8; i++ {
 				for _, char := range word {
 					index := int(char - ' ') //find the difference between the ascii value of the letter and that of space
@@ -43,11 +46,14 @@ func AsciiArt(input string) string {
 				result.WriteString("\n")
 	
 			}
+		}else {
+			result.WriteString("\n")
 		}
 	
 	}
 
 	return result.String() //return the ASCII art as a string
+	
 }
 
 func main() {
@@ -60,4 +66,5 @@ func main() {
 	input := os.Args[1]
 
 	fmt.Print(AsciiArt(input))
+	
 }
